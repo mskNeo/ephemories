@@ -1,11 +1,11 @@
 {
-  "name": "noteboard",
+  "name": "ephemories",
   "version": "1.0.0",
-  "description": "Fullstack Note Board App",
-  "main": "index.js",
+  "description": "Ephemories Web App",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cd server && NODE_ENV=development nodemon app.js"
+    "dev": "cd server && nodemon app.js"
   },
   "author": "Mahdeen Khan",
   "license": "ISC",

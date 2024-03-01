@@ -6,13 +6,11 @@ import {MongoServerError} from 'mongodb';
 class EphemosRepository {
   /**
    * @param {class} client - MongoClient instance
-   * @param {class} model - Ephemos model
    */
-  constructor(client, model) {
+  constructor(client) {
     this.client = client;
     this.db = client.db('ephemo-board');
     this.collection = this.db.collection('ephemos');
-    this.model = model;
   }
 
   /**
@@ -54,6 +52,36 @@ class EphemosRepository {
       // TODO: error handling
       if (err instanceof MongoServerError) return err;
       throw err;
+    }
+  }
+
+  /**
+   * @param {ObjectId} id - ObjectId of ephemo document
+   * @param {object} ephemo - new ephemo content
+   */
+  async updateEphemo(id, ephemo) {
+    try {
+      const query = await this.collection.findOneAndUpdate(
+          {'_id': id},
+          {$set: {'content': ephemo.content}},
+          {returnDocument: 'after'},
+      );
+      return query;
+    } catch (err) {
+      return err;
+    }
+  }
+
+  /**
+   * @param {ObjectId} id - id of ephemo document
+   * @return {object} - status of query
+   */
+  async deleteEphemoById(id) {
+    try {
+      const query = await this.collection.deleteOne({'_id': id});
+      return query;
+    } catch (err) {
+      return err;
     }
   }
 };

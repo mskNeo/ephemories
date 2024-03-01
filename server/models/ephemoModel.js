@@ -1,7 +1,5 @@
-import moment from 'moment';
-
 /**
- * Note Class
+ * Ephemo Class
  */
 class Ephemo {
   /**
@@ -9,7 +7,7 @@ class Ephemo {
    * @param {string} content - content string
    * @param {string} expires - expiration date
    */
-  constructor({_id, content, expires} = {}) {
+  constructor({_id, content, expires} = {}, moment) {
     this._id = _id;
     this.content = content;
     this.expires = expires ?

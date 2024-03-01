@@ -40,6 +40,23 @@ class EphemosService {
   async createEphemo(ephemo) {
     return await this.repository.createEphemo(ephemo);
   }
+
+  /**
+   * @param {string} id - id of ephemo document
+   * @param {object} ephemo - new ephemo content
+   */
+  async updateEphemo(id, ephemo) {
+    return await this.repository.updateEphemo(new ObjectId(id), ephemo);
+  }
+
+  /**
+   * @param {string} id - id of ephemo document
+   * @return {object} - query results
+   */
+  async deleteEphemoById(id) {
+    const query = await this.repository.deleteEphemoById(new ObjectId(id));
+    return query;
+  }
 }
 
 export {

@@ -32,6 +32,23 @@ class EphemosController {
   async createEphemo(ephemo) {
     return await this.service.createEphemo(ephemo);
   }
+
+  /**
+   * @param {string} id - id of ephemo document
+   * @param {object} ephemo - new contents of ephemo
+   */
+  async updateEphemo(id, ephemo) {
+    return await this.service.updateEphemo(id, ephemo);
+  };
+
+  /**
+  * @param {string} id - id of ephemo document
+  * @return {string} - status of transactions
+  * // TODO: work on figuring out handling of transactions
+  */
+  async deleteEphemoById(id) {
+    return await this.service.deleteEphemoById(id);
+  }
 }
 
 export {
