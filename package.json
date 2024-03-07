@@ -44,5 +44,6 @@
     "ts-node": "^10.9.2",
     "typedi": "^0.10.0",
     "typescript": "^5.3.3"
-  }
+  },
+  "eslint.workingDirectories": ["./src"]
 }

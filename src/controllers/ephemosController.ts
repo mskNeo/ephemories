@@ -16,12 +16,12 @@ export default class EphemosController {
       .then((ephemos: Ephemo[]) => {
         res.status(200).send(ephemos);
       })
-      .catch((err: any) => {
+      .catch((err) => {
         res.status(404).send(err);
       });
   }
 
-  createEphemo(req: Request<{}, {}, Ephemo>, res: Response) {
+  createEphemo(req: Request<object, object, Ephemo>, res: Response) {
     const body: Ephemo = req.body;
 
     this.service
@@ -29,7 +29,7 @@ export default class EphemosController {
       .then((result: string) => {
         res.status(201).send(result);
       })
-      .catch((err: any) => {
+      .catch((err) => {
         res.status(400).send(err);
       });
   }
@@ -43,7 +43,7 @@ export default class EphemosController {
       .then((result: Ephemo) => {
         res.status(200).send(result);
       })
-      .catch((err: any) => {
+      .catch(() => {
         res.status(400).send(`Error updating ephemo with id ${id}`);
       });
   }
@@ -57,8 +57,8 @@ export default class EphemosController {
       .then((result: string) => {
         res.status(200).send(result);
       })
-      .catch((err: any) => {
+      .catch(() => {
         res.status(405).send('Delete not allowed');
-      })
+      });
   }
 }

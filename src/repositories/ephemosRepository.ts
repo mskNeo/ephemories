@@ -1,6 +1,14 @@
 import { Inject, Service } from 'typedi';
 import { dbClient } from 'config/mongoClient';
-import { Db, Collection, InsertOneResult, AggregationCursor, ObjectId, WithId, DeleteResult } from 'mongodb';
+import {
+  Db,
+  Collection,
+  InsertOneResult,
+  AggregationCursor,
+  ObjectId,
+  WithId,
+  DeleteResult
+} from 'mongodb';
 import { Ephemo } from 'models/ephemoModel';
 import LuxonUtils from 'utils/luxonUtils';
 
@@ -26,7 +34,7 @@ export class EphemosRepository {
 
     const query = this.collection.aggregate<Ephemo>([
       { $match: { expires: { $gt: this.utils.getDateNow() } } },
-      { $sample: { size } },
+      { $sample: { size } }
     ]);
     return query;
   }
@@ -35,10 +43,13 @@ export class EphemosRepository {
     return this.collection.insertOne(ephemo);
   }
 
-  async updateEphemo(id: ObjectId, ephemo: Ephemo): Promise<WithId<Ephemo> | null> {
+  async updateEphemo(
+    id: ObjectId,
+    ephemo: Ephemo
+  ): Promise<WithId<Ephemo> | null> {
     return this.collection.findOneAndUpdate(
       { _id: id },
-      { $set: { 'content': ephemo.content } },
+      { $set: { content: ephemo.content } },
       { returnDocument: 'after' }
     );
   }

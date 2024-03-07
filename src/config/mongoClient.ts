@@ -6,6 +6,6 @@ export const dbClient = new MongoClient(Container.get(dbToken), {
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,
-    deprecationErrors: true,
-  },
+    deprecationErrors: true
+  }
 });

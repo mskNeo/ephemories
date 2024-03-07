@@ -1,5 +1,5 @@
 import { Ephemo } from 'models/ephemoModel';
-import { ObjectId, WithId } from 'mongodb';
+import { ObjectId } from 'mongodb';
 import { EphemosRepository } from 'repositories/ephemosRepository';
 import { Inject, Service } from 'typedi';
 import LuxonUtils from 'utils/luxonUtils';
@@ -14,9 +14,9 @@ export class EphemosService {
 
   constructor() {}
 
-  private handleError(err: any): Error {
+  private handleError(err: unknown): Error {
     console.error(err);
-    return new Error(err);
+    return new Error(`${err}`);
   }
 
   async getEphemos(): Promise<Ephemo[]> {
@@ -29,7 +29,7 @@ export class EphemosService {
           resolve(query);
         }
       });
-    } catch (err: any) {
+    } catch (err) {
       throw this.handleError(err);
     }
   }
@@ -47,22 +47,25 @@ export class EphemosService {
           resolve(`Created ephemo with id ${query.insertedId.toHexString()}`);
         }
       });
-    } catch (err: any) {
+    } catch (err) {
       throw this.handleError(err);
     }
   }
 
   async updateEphemo(id: string, ephemo: Ephemo): Promise<Ephemo> {
     try {
-      const query = await this.repository.updateEphemo(new ObjectId(id), ephemo);
+      const query = await this.repository.updateEphemo(
+        new ObjectId(id),
+        ephemo
+      );
       return new Promise((resolve, reject) => {
         if (query === null) {
           reject(`Cannot find ephemo with id ${id}`);
         } else {
           resolve(query);
         }
-      })
-    } catch (err: any) {
+      });
+    } catch (err) {
       throw this.handleError(err);
     }
   }
@@ -77,7 +80,7 @@ export class EphemosService {
           resolve(`Deleted ${query.deletedCount} ephemos`);
         }
       });
-    } catch (err: any) {
+    } catch (err) {
       throw this.handleError(err);
     }
   }

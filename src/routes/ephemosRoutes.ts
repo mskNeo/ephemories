@@ -12,25 +12,23 @@ const logger: Logger = Container.get(Logger);
 
 // logging middleware
 ephemosRouter.use((req: Request, res: Response, next: NextFunction) =>
-  logger.logRequest(req, res, next),
+  logger.logRequest(req, res, next)
 );
 
 // routes
 ephemosRouter.get('/', (req: Request, res: Response) =>
-  controller.getEphemos(req, res),
+  controller.getEphemos(req, res)
 );
 ephemosRouter.post('/', (req: Request, res: Response) =>
-  controller.createEphemo(req, res),
+  controller.createEphemo(req, res)
 );
 ephemosRouter.put(
   '/:id',
   (req: Request<EphemoIdParams, Ephemo>, res: Response) =>
-    controller.updateEphemo(req, res),
+    controller.updateEphemo(req, res)
 );
-ephemosRouter.delete(
-  '/:id',
-  (req: Request<EphemoIdParams>, res: Response) =>
-    controller.deleteEphemo(req, res),
-)
+ephemosRouter.delete('/:id', (req: Request<EphemoIdParams>, res: Response) =>
+  controller.deleteEphemo(req, res)
+);
 
 export = ephemosRouter;

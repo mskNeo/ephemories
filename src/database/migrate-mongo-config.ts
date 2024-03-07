@@ -8,7 +8,7 @@ export = {
     url: Container.get(dbToken),
 
     // TODO Change this to your database name:
-    databaseName: 'ephemory',
+    databaseName: 'ephemory'
   },
 
   // The migrations dir, can be an relative or absolute path. Only edit this when really necessary.
@@ -25,5 +25,5 @@ export = {
   useFileHash: false,
 
   // Don't change this, unless you know what you're doing
-  moduleSystem: 'commonjs',
+  moduleSystem: 'commonjs'
 };
