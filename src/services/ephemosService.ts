@@ -15,10 +15,14 @@ export class EphemosService {
   constructor() {}
 
   private handleError(err: unknown): Error {
-    console.error(err);
-    return new Error(`${err}`);
+    const error = new Error(`${err}`);
+    console.error(error.cause);
+    return error;
   }
 
+  /**
+   * @returns {Ephemo[] | undefined} Results of query in DB
+   */
   async getEphemos(): Promise<Ephemo[]> {
     try {
       const query = await this.repository.getEphemos().toArray();
@@ -34,6 +38,10 @@ export class EphemosService {
     }
   }
 
+  /**
+   * @param {Ephemo} ephemo - Ephemo to be created
+   * @returns {Promise<string>} Returns string detailing results of insertion
+   */
   async createEphemo(ephemo: Ephemo): Promise<string> {
     try {
       const ephemoToSave: Ephemo = ephemo;
@@ -52,6 +60,11 @@ export class EphemosService {
     }
   }
 
+  /**
+   * @param {string} id - id of Ephemo to be updated
+   * @param {Ephemo} ephemo - new Ephemo body
+   * @returns {Promise<Ephemo>} - returns Ephemo object if successful
+   */
   async updateEphemo(id: string, ephemo: Ephemo): Promise<Ephemo> {
     try {
       const query = await this.repository.updateEphemo(
@@ -70,6 +83,10 @@ export class EphemosService {
     }
   }
 
+  /**
+   * @param {string} id - id of Ephemo to be deleted
+   * @returns {Promise<string>} returns string detailing results of deletion
+   */
   async deleteEphemo(id: string): Promise<string> {
     try {
       const query = await this.repository.deleteEphemo(new ObjectId(id));

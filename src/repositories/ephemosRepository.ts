@@ -30,7 +30,6 @@ export class EphemosRepository {
 
   getEphemos(): AggregationCursor<Ephemo> {
     const size: number = this.sampleSize;
-    console.log(size, typeof size);
 
     const query = this.collection.aggregate<Ephemo>([
       { $match: { expires: { $gt: this.utils.getDateNow() } } },

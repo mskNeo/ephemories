@@ -10,7 +10,7 @@ export default class EphemosController {
 
   constructor() {}
 
-  getEphemos(req: Request, res: Response) {
+  async getEphemos(req: Request, res: Response) {
     this.service
       .getEphemos()
       .then((ephemos: Ephemo[]) => {
@@ -50,7 +50,6 @@ export default class EphemosController {
 
   deleteEphemo(req: Request<EphemoIdParams>, res: Response) {
     const id = req.params.id;
-    console.log('id', id);
 
     this.service
       .deleteEphemo(id)

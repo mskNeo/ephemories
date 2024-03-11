@@ -1,22 +1,31 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import 'reflect-metadata';
 import express from 'express';
 import cors from 'cors';
 import ephemosRouter from 'routes/ephemosRoutes';
 import { Container } from 'typedi';
+import * as middleware from 'middleware/functions';
 
 const app = express();
 
 const corsOptions = {
-  origin: 'http://localhost:3000', // React App
+  origin: 'http://localhost:3000' // React App
 };
 app.use(express.json());
 app.use(cors(corsOptions));
 
-const port = Container.get('port') || 3001;
+// get dependencies and values for app
+const port: number = Container.get('port') || 3001;
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+// run app on port
+app.listen(port, () => middleware.handlePortListen(port));
+
+// handle unknown routes
+app.all('*', middleware.handleUnknownRoutes);
+
+// middleware
+app.use(middleware.logRequest);
+app.use(middleware.handleRequestError);
 
 // routes
 app.use('/ephemos', ephemosRouter);
