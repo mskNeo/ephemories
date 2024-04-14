@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { HTTPCode } from 'models/httpEnum';
 import Container from 'typedi';
 import { AppError, ErrorHandler } from 'utils/errorUtils';
+import { LogLevel } from 'utils/logStyles';
 import Logger from 'utils/logger';
 
 const logger: Logger = Container.get(Logger);
@@ -11,7 +12,7 @@ const errorHandler: ErrorHandler = Container.get(ErrorHandler);
  * @param {number} port - port number of server
  */
 function handlePortListen(port: number): void {
-  logger.log('INFO', `Server running on port ${port}`);
+  logger.log(LogLevel.INFO, `Server running on port ${port}`);
 }
 
 /**
@@ -44,7 +45,7 @@ function logRequest(req: Request, res: Response, next: NextFunction): void {
   if (req.method === 'POST' || req.method === 'PUT') {
     str += ` payload: ${JSON.stringify(req.body)}`;
   }
-  logger.log('INFO', str);
+  logger.log(LogLevel.INFO, str);
   next();
 }
 

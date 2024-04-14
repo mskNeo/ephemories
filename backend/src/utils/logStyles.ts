@@ -28,6 +28,13 @@ enum LogStyles {
   BgGray = '\x1b[100m'
 }
 
+export enum LogLevel {
+  INFO = 'INFO',
+  ERR = 'ERROR',
+  DEBUG = 'DEBUG',
+  WARN = 'WARNING'
+}
+
 /**
  * Make text bright in console
  * @param {unknown} str - input to be made bold

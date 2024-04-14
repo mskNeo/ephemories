@@ -20,12 +20,12 @@ const port: number = Container.get('port') || 3001;
 // run app on port
 app.listen(port, () => middleware.handlePortListen(port));
 
-// handle unknown routes
-app.all('*', middleware.handleUnknownRoutes);
-
 // middleware
 app.use(middleware.logRequest);
 app.use(middleware.handleRequestError);
 
 // routes
 app.use('/ephemos', ephemosRouter);
+
+// handle unknown routes
+app.all('*', middleware.handleUnknownRoutes);

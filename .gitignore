@@ -1,8 +1,3 @@
-node_modules
+.vscode
 
-src/.env
-
-dist
-.eslintrc
-.eslintignore
-.prettierrc
+client/node_modules

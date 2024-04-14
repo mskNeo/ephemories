@@ -1,0 +1,79 @@
+.toggleSwitch {
+  position: relative;
+  width: 75px;
+  display: inline-block;
+  vertical-align: middle;
+  &Checkbox {
+    display: none;
+  }
+  &Label {
+    display: block;
+    cursor: pointer;
+    overflow: hidden;
+    border: 0 solid #bbb;
+    border-radius: 20px;
+    margin: 0;
+  }
+  &Inner {
+    display: block;
+    height: 100%;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+    &:before,
+    &:after {
+      display: block;
+      width: 50%;
+      height: 34px;
+      background-size: 25px;
+      background-repeat: no-repeat;
+      background-origin: content-box;
+      box-sizing: border-box;
+    }
+    &:before {
+      content: '';
+      background-image: url('../assets/moon.png');
+      float: left;
+      padding-left: 10px;
+      background-color: #f90;
+      background-position: left center;
+    }
+    &:after {
+      content: '';
+      background-image: url('../assets/sun.png');
+      float: right;
+      padding-right: 10px;
+      background-color: #888;
+      background-position: right center;
+    }
+  }
+  &Disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+    &:before {
+      background-color: #ddd;
+      cursor: not-allowed;
+    }
+  }
+  &Switch {
+    display: block;
+    width: 24px;
+    margin: 5px;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 40px;
+    border: 0 solid #bbb;
+    border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+  }
+  &Checkbox:checked + &Label {
+    .toggleSwitchInner {
+      margin-left: 0;
+    }
+    .toggleSwitchSwitch {
+      right: 0px;
+    }
+  }
+}

@@ -9,7 +9,8 @@ Container.set('env', process.env.NODE_ENV);
 
 Container.set(
   dbToken,
-  process.env
-    .MONGODB_URI!.replace('<username>', process.env.DB_USERNAME!)
-    .replace('<password>', process.env.DB_PASSWORD!)
+  process.env.MONGODB_URI!.replace(
+    '<username>:<password>',
+    `${process.env.DB_USERNAME!}:${process.env.DB_PASSWORD!}`
+  )
 );

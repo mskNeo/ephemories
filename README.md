@@ -10,10 +10,10 @@ The backend server is an Express Node.js app that connects to a MongoDB Atlas cl
 
 ### Backend Features
 - Logging Middleware
-- Error handling (coming soon maybe?)
+- Error handling (need to flesh out)
 - Pagination
 - DB Migrations
 - Unit/Integration Testing (coming soon)
 
 ## Client
-The client will be a React app that is connected to the server. Coming soon
+The client will be a React app that is connected to the server. Coming soon.

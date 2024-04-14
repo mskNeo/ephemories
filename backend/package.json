@@ -8,7 +8,7 @@
     "dev": "NODE_PATH=./src nodemon src/index.ts",
     "start": "NODE_PATH=./src ts-node src/index.ts",
     "build": "tsc",
-    "serve": "node dist/index.js",
+    "serve": "node dist/src/index.js",
     "lint": "eslint src/**/*.ts",
     "format": "eslint src/**/*.ts --fix",
     "migrate:create": "cd src/database && sh -c 'ts-node ../../node_modules/.bin/migrate-mongo create $0 -f migrate-mongo-config.ts' ",
@@ -44,6 +44,5 @@
     "ts-node": "^10.9.2",
     "typedi": "^0.10.0",
     "typescript": "^5.3.3"
-  },
-  "eslint.workingDirectories": ["./src"]
+  }
 }

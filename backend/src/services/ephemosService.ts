@@ -21,7 +21,7 @@ export class EphemosService {
   }
 
   /**
-   * @returns {Ephemo[] | undefined} Results of query in DB
+   * @returns {Promise<Ephemo[]>} Results of query in DB
    */
   async getEphemos(): Promise<Ephemo[]> {
     try {

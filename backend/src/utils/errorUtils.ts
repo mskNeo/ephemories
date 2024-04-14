@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { HTTPCode } from 'models/httpEnum';
 import { Inject, Service } from 'typedi';
 import Logger from './logger';
+import { LogLevel } from './logStyles';
 
 export class AppError extends Error {
   statusCode: HTTPCode;
@@ -28,13 +29,13 @@ export class ErrorHandler {
   constructor() {}
 
   private devErr(err: AppError, res: Response) {
-    this.logger.log('ERROR', err.message);
+    this.logger.log(LogLevel.ERR, err.message);
     res.status(err.statusCode).send(err.message);
     throw err;
   }
 
   private prodErr(err: AppError, res: Response) {
-    this.logger.log('ERROR', err.message);
+    this.logger.log(LogLevel.ERR, err.message);
     if (err.isOperational) {
       res.status(err.statusCode).json({
         status: err.status,
@@ -51,7 +52,7 @@ export class ErrorHandler {
 
   public handleError(err: AppError, req: Request, res: Response): void {
     switch (this.env) {
-      case 'prod':
+      case 'production':
         this.prodErr(err, res);
         break;
       default:
