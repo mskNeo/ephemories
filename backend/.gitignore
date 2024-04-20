@@ -1,0 +1,7 @@
+src/.env
+
+dist
+.eslintrc
+.eslintignore
+.prettierrc
+node_modules
