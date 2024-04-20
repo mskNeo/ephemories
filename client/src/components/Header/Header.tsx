@@ -1,5 +1,6 @@
 import React from 'react'
-import { ThemeToggle } from 'components/ThemeToggle'
+import { ThemeToggle } from '@/components/Toggle'
+
 
 export default function Header() {
   return (

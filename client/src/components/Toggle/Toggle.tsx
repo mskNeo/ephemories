@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from 'styles/Toggle.module.scss';
 
-export default function Toggle({ value, setValue }: { value: unknown, setValue: (value: boolean) => void }) {
+export default function Toggle({ value, setValue }: { value: boolean, setValue: (value: boolean) => void }) {
   return (
     <div className={styles.toggleSwitch}>
       <input 
         type='checkbox'
         className={styles.toggleSwitchCheckbox}
-        checked={typeof value === 'boolean' ? value : undefined}
+        checked={value}
         onChange={() => setValue(!value)}
         name={`${value}ToggleSwitch`}
         id={`${value}ToggleSwitch`}
