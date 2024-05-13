@@ -1,0 +1,9 @@
+.env
+node_modules
+dist
+
+.eslintignore
+.eslintrc
+.prettierrc
+
+pnpm-lock.yaml

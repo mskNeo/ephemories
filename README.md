@@ -15,5 +15,14 @@ The backend server is an Express Node.js app that connects to a MongoDB Atlas cl
 - DB Migrations
 - Unit/Integration Testing (coming soon)
 
+## Backend TS Rest
+This is a backend implementation with the ts-rest library and zod
+
+## Backend Custom
+This is a basic Node.js app with my own "interpretation" of backend framework and tools, basically going to try to model Nestjs with dependency injection, MVC, decorators, schema validation, etc
+
+## Backend Rust
+A Rust implementation of a backend API, oooooo
+
 ## Client
 The client will be a React app that is connected to the server. Coming soon.
