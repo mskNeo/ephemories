@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import ThemeContext from 'context/ThemeContext';
-import { Home } from 'pages/Home';
+import ThemeContext from '@/context/ThemeContext';
+import Home from '@/pages/Home';
 
 function App() {
   const [isDarkMode, setDarkMode] = useState(false);
