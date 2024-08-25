@@ -12,8 +12,10 @@ The backend server is an Express Node.js app that connects to a MongoDB Atlas cl
 - Logging Middleware
 - Error handling (need to flesh out)
 - Pagination
-- DB Migrations
 - Unit/Integration Testing (coming soon)
+
+### Backend TODO
+- Convert writing dates to UTC and reading to local time
 
 ## Client
 The client will be a React app that is connected to the server. Coming soon.

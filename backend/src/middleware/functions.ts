@@ -1,31 +1,26 @@
-import { Request, Response, NextFunction } from 'express';
-import { HTTPCode } from 'models/httpEnum';
-import Container from 'typedi';
-import { AppError, ErrorHandler } from 'utils/errorUtils';
-import { LogLevel } from 'utils/logStyles';
-import Logger from 'utils/logger';
+import { Request, Response, NextFunction } from "express";
+import config from "config/envConfig";
+import { AppError, ErrorHandler } from "utils/errorUtils";
+import { HTTPCode } from "types/HTTPCodes";
+import { Logger, LogLevel } from "lib/logging";
 
-const logger: Logger = Container.get(Logger);
-const errorHandler: ErrorHandler = Container.get(ErrorHandler);
+const errorHandler = new ErrorHandler(Logger, config.env);
 
 /**
+ * Log server running on port
  * @param {number} port - port number of server
  */
-function handlePortListen(port: number): void {
-  logger.log(LogLevel.INFO, `Server running on port ${port}`);
+function handlePortListen(port: number) {
+  Logger.log(LogLevel.INFO, `Server running on port ${port}`);
 }
 
 /**
- * Handles routes that do not exist in API
+ * Throw error when hitting routes that do not exist in API
  * @param {Request} req - Request object from Express
  * @param {Response} res - Response object from Express
  * @param {NextFunction} next - Next function to call
  */
-function handleUnknownRoutes(
-  req: Request,
-  res: Response,
-  next: NextFunction
-): void {
+function handleUnknownRoutes(req: Request, res: Response, next: NextFunction) {
   next(
     new AppError(
       `Endpoint ${req.method} ${req.url} does not exist`,
@@ -40,12 +35,12 @@ function handleUnknownRoutes(
  * @param {Response} res - Response object from Express
  * @param {NextFunction} next - Next function to call
  */
-function logRequest(req: Request, res: Response, next: NextFunction): void {
+function logRequest(req: Request, res: Response, next: NextFunction) {
   let str: string = `${req.method} ${req.url}`;
-  if (req.method === 'POST' || req.method === 'PUT') {
+  if (req.method === "POST" || req.method === "PUT") {
     str += ` payload: ${JSON.stringify(req.body)}`;
   }
-  logger.log(LogLevel.INFO, str);
+  Logger.log(LogLevel.INFO, str);
   next();
 }
 
@@ -70,5 +65,5 @@ export {
   handlePortListen,
   handleUnknownRoutes,
   logRequest,
-  handleRequestError
+  handleRequestError,
 };

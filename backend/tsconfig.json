@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es2022",
-    "module": "commonjs",
+    "target": "ES6",
+    "module": "NodeNext",
     "outDir": "./dist",
     "baseUrl": "./src",
     "rootDir": "./",
@@ -10,10 +10,8 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "sourceMap": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
     "strictPropertyInitialization": false
   },
-  "include": ["./src/**/*.ts"],
+  "include": ["./src/**/*.ts",],
   "exclude": ["./node_modules"]
 }

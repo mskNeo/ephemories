@@ -1,11 +1,12 @@
-import { MongoClient, ServerApiVersion } from 'mongodb';
-import { Container } from 'typedi';
-import { dbToken } from './typeDIConfig';
+import { MongoClient, ServerApiVersion } from "mongodb";
+import config from "./envConfig";
 
-export const dbClient = new MongoClient(Container.get(dbToken), {
+const uri = config.dbUri;
+
+export const dbClient = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,
-    deprecationErrors: true
-  }
+    deprecationErrors: true,
+  },
 });
